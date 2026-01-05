@@ -167,8 +167,8 @@ class SharedRewriteProcessor {
 
             $this->update_task_progress($task_id, self::STATUS_EXTRACTING, 'extracting', 30, '콘텐츠 추출 완료, AI 재작성 준비 중...');
 
-            // Step 2: AI 재작성
-            $this->update_task_progress($task_id, self::STATUS_REWRITING, 'rewriting', 40, 'AI가 콘텐츠를 재작성하고 있습니다...');
+            // Step 2: AI 재작성 (1차 호출 - 본문 생성)
+            $this->update_task_progress($task_id, self::STATUS_REWRITING, 'rewriting', 35, '[1/2] AI가 본문을 작성하고 있습니다...');
 
             $ai_provider = $options['ai_provider'] ?? get_option('aicr_default_ai_provider', 'chatgpt');
             $ai = AIFactory::create($ai_provider);
@@ -203,23 +203,30 @@ class SharedRewriteProcessor {
             // AI 응답에서 JSON 파싱
             $parsed_content = $this->parse_ai_response($ai_raw_content);
 
-            $this->update_task_progress($task_id, self::STATUS_REWRITING, 'rewriting', 70, 'AI 재작성 완료, 게시글 생성 중...');
-
-            // Step 3: 게시글 생성
-            $this->update_task_progress($task_id, self::STATUS_PUBLISHING, 'publishing', 80, '워드프레스 게시글 생성 중...');
+            $this->update_task_progress($task_id, self::STATUS_REWRITING, 'rewriting', 55, '[1/2] 본문 작성 완료!');
 
             // 본문 콘텐츠 구성
             $post_content = $parsed_content['post_content'] ?? $ai_raw_content;
 
+            // Step 2.5: 발췌 표 생성 (2차 호출)
+            $this->update_task_progress($task_id, self::STATUS_REWRITING, 'extracting_table', 60, '[2/2] 핵심 내용을 발췌하여 표로 정리 중...');
+
+            $extract_table = $this->generate_extract_table($ai, $prompt_manager, $post_content, $language);
+
             // 발췌 표가 있으면 본문 끝에 추가
-            if (!empty($parsed_content['summary_table'])) {
-                $summary_table = $parsed_content['summary_table'];
+            if (!empty($extract_table)) {
+                $this->update_task_progress($task_id, self::STATUS_REWRITING, 'extracting_table', 75, '[2/2] 발췌 표 생성 완료!');
                 $post_content .= "\n\n<!-- 핵심 내용 발췌 -->\n";
                 $post_content .= '<div class="aicr-summary-section">';
                 $post_content .= '<h2>📌 핵심 내용 정리</h2>';
-                $post_content .= $summary_table;
+                $post_content .= $extract_table;
                 $post_content .= '</div>';
+            } else {
+                $this->update_task_progress($task_id, self::STATUS_REWRITING, 'extracting_table', 75, '[2/2] 발췌 표 생성 건너뜀');
             }
+
+            // Step 3: 게시글 생성
+            $this->update_task_progress($task_id, self::STATUS_PUBLISHING, 'publishing', 85, '워드프레스 게시글 생성 중...');
 
             $post_data = [
                 'post_title' => $parsed_content['post_title'] ?? $content_data['title'],
@@ -528,5 +535,77 @@ class SharedRewriteProcessor {
         }
 
         return $parsed;
+    }
+
+    /**
+     * 발췌 표 생성 (두 번째 AI 호출)
+     *
+     * @param object $ai AI 어댑터 인스턴스
+     * @param PromptManager $prompt_manager 프롬프트 매니저
+     * @param string $post_content 생성된 본문 콘텐츠
+     * @param string $language 언어
+     * @return string|null HTML 표 또는 null
+     */
+    private function generate_extract_table($ai, PromptManager $prompt_manager, string $post_content, string $language): ?string {
+        try {
+            // 발췌 표 프롬프트 생성
+            $extract_prompt = $prompt_manager->build_prompt(
+                'extract_table',
+                [
+                    'content' => $post_content,
+                    'target_language' => $language,
+                ]
+            );
+
+            // AI 호출 (발췌 표는 토큰을 적게 사용)
+            $table_response = $ai->generate($extract_prompt, [
+                'max_completion_tokens' => 4096,
+            ]);
+
+            if (!$table_response->is_success()) {
+                error_log('[AICR] Extract table generation failed: ' . $table_response->get_error());
+                return null;
+            }
+
+            $table_content = $table_response->get_content();
+
+            // HTML 표 추출
+            return $this->extract_html_table($table_content);
+
+        } catch (\Exception $e) {
+            error_log('[AICR] Extract table error: ' . $e->getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * 응답에서 HTML 표 추출
+     *
+     * @param string $content AI 응답
+     * @return string|null HTML 표 또는 null
+     */
+    private function extract_html_table(string $content): ?string {
+        // ```html 코드 블록에서 추출
+        if (preg_match('/```html\s*([\s\S]*?)\s*```/', $content, $matches)) {
+            $table = trim($matches[1]);
+            if (stripos($table, '<table') !== false) {
+                return $table;
+            }
+        }
+
+        // ``` 코드 블록에서 추출
+        if (preg_match('/```\s*([\s\S]*?)\s*```/', $content, $matches)) {
+            $table = trim($matches[1]);
+            if (stripos($table, '<table') !== false) {
+                return $table;
+            }
+        }
+
+        // 직접 <table> 태그 추출
+        if (preg_match('/<table[\s\S]*?<\/table>/i', $content, $matches)) {
+            return trim($matches[0]);
+        }
+
+        return null;
     }
 }

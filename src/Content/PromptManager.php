@@ -43,8 +43,7 @@ class PromptManager {
   "keywords": ["관련 키워드 5-8개"],
   "tags": ["태그 3-5개"],
   "category_suggestion": "추천 카테고리명",
-  "excerpt": "게시글 요약 (150자 이내)",
-  "summary_table": "본문 핵심 내용을 발췌하여 정리한 HTML 표 (아래 가이드 참고)"
+  "excerpt": "게시글 요약 (150자 이내)"
 }
 ```
 
@@ -99,56 +98,6 @@ class PromptManager {
 <p>독자를 위한 실행 가능한 조언...</p>
 <p>마무리 및 행동 유도...</p>
 ```
-
-## 핵심 내용 발췌 표 (summary_table) 작성 가이드
-
-글에서 독자에게 가장 중요한 정보를 **발췌**하여 HTML 표로 정리해주세요.
-
-**중요**: 고정된 형식을 사용하지 마세요. 글의 주제와 내용에 따라 가장 적합한 컬럼과 행을 직접 설계하세요.
-
-### 발췌 표 설계 원칙
-
-1. **글의 성격에 맞는 컬럼 구성**
-   - 제품/서비스 비교글: 항목명 | 특징 | 장점 | 단점 | 가격
-   - 방법/절차 설명글: 단계 | 작업 내용 | 소요 시간 | 주의사항
-   - 정보/데이터 분석글: 항목 | 수치/데이터 | 의미/해석
-   - 리뷰/평가글: 평가 항목 | 점수 | 상세 내용
-   - 기술/개념 설명글: 용어 | 정의 | 활용 예시
-   - 뉴스/트렌드 분석글: 키워드 | 현황 | 전망
-
-2. **발췌할 내용 선정 기준**
-   - 본문에서 가장 중요한 사실, 수치, 비교 정보를 추출
-   - 독자가 반드시 알아야 할 핵심 정보 위주로 선별
-   - 본문 내용을 그대로 발췌하거나 핵심만 간결하게 정리
-
-3. **표 형식 예시** (글 내용에 따라 자유롭게 변형)
-
-```html
-<table class="aicr-summary-table" style="width:100%; border-collapse:collapse; margin:20px 0;">
-  <thead>
-    <tr style="background-color:#f8f9fa;">
-      <th style="border:1px solid #dee2e6; padding:12px; text-align:left;">컬럼1</th>
-      <th style="border:1px solid #dee2e6; padding:12px; text-align:left;">컬럼2</th>
-      <th style="border:1px solid #dee2e6; padding:12px; text-align:left;">컬럼3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border:1px solid #dee2e6; padding:10px;">발췌 내용 1</td>
-      <td style="border:1px solid #dee2e6; padding:10px;">발췌 내용 2</td>
-      <td style="border:1px solid #dee2e6; padding:10px;">발췌 내용 3</td>
-    </tr>
-    <!-- 필요한 만큼 행 추가 -->
-  </tbody>
-</table>
-```
-
-### 발췌 표 작성 시 필수 준수사항
-- 컬럼 수: 2~5개 (글의 내용에 맞게 결정)
-- 행 수: 3~10개 (핵심 정보량에 맞게 결정)
-- 본문의 구체적인 정보(숫자, 이름, 특징 등)를 발췌하여 기재
-- 추상적인 설명이 아닌 본문에서 직접 가져온 실제 내용으로 채우기
-- 표 제목(caption)은 넣지 않음 (별도 제공됨)
 
 ## 작성 언어
 {{target_language}}로 모든 콘텐츠를 작성해주세요.
@@ -262,6 +211,60 @@ JSON 형식으로만 응답해주세요.',
 이것은 마지막 부분입니다. 적절한 결론으로 마무리해주세요.
 {{/if}}',
             'variables' => ['content', 'chunk_index', 'chunk_total', 'is_first', 'is_last'],
+        ],
+        'extract_table' => [
+            'name' => '핵심 내용 발췌 표',
+            'type' => 'extract_table',
+            'content' => '다음 블로그 글에서 독자에게 가장 중요한 정보를 **발췌**하여 HTML 표로 정리해주세요.
+
+## 블로그 글
+{{content}}
+
+---
+
+## 발췌 표 작성 지침
+
+**핵심 원칙**: 글의 주제와 내용에 따라 가장 적합한 컬럼과 행을 직접 설계하세요. 고정된 형식을 사용하지 마세요.
+
+### 글 유형별 컬럼 구성 예시
+- 제품/서비스 비교: 항목명 | 특징 | 장점 | 단점 | 가격
+- 방법/절차 설명: 단계 | 작업 내용 | 소요 시간 | 주의사항
+- 정보/데이터 분석: 항목 | 수치/데이터 | 의미/해석
+- 리뷰/평가: 평가 항목 | 점수 | 상세 내용
+- 기술/개념 설명: 용어 | 정의 | 활용 예시
+- 뉴스/트렌드: 키워드 | 현황 | 전망
+
+### 발췌 기준
+- 본문에서 가장 중요한 사실, 수치, 비교 정보를 추출
+- 독자가 반드시 알아야 할 핵심 정보 위주로 선별
+- 본문 내용을 그대로 발췌하거나 핵심만 간결하게 정리
+- 추상적인 설명이 아닌 구체적인 정보로 채우기
+
+### 표 형식 (필수)
+```html
+<table class="aicr-summary-table" style="width:100%; border-collapse:collapse; margin:20px 0;">
+  <thead>
+    <tr style="background-color:#f8f9fa;">
+      <th style="border:1px solid #dee2e6; padding:12px; text-align:left;">컬럼1</th>
+      <th style="border:1px solid #dee2e6; padding:12px; text-align:left;">컬럼2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid #dee2e6; padding:10px;">내용</td>
+      <td style="border:1px solid #dee2e6; padding:10px;">내용</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### 규칙
+- 컬럼 수: 2~5개 (글의 내용에 맞게)
+- 행 수: 3~10개 (핵심 정보량에 맞게)
+- {{target_language}}로 작성
+
+**HTML 표만 출력하세요. 다른 설명은 포함하지 마세요.**',
+            'variables' => ['content', 'target_language'],
         ],
     ];
 
