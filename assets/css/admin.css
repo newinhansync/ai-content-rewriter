@@ -1252,3 +1252,74 @@ textarea.aicr-full-width {
 .aicr-result-actions .button {
     min-width: 120px;
 }
+
+/* ================================
+   요약 표 스타일 (Summary Table)
+   ================================ */
+
+.aicr-summary-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #eee;
+}
+
+.aicr-summary-section h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #1d2327;
+}
+
+.aicr-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.aicr-summary-table thead tr {
+    background-color: #f8f9fa;
+}
+
+.aicr-summary-table th {
+    border: 1px solid #dee2e6;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.aicr-summary-table td {
+    border: 1px solid #dee2e6;
+    padding: 12px 15px;
+    vertical-align: top;
+    line-height: 1.6;
+}
+
+.aicr-summary-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.aicr-summary-table tbody tr:hover {
+    background-color: #f0f6fc;
+}
+
+.aicr-summary-table td strong {
+    color: #2271b1;
+}
+
+/* 반응형 요약 표 */
+@media screen and (max-width: 600px) {
+    .aicr-summary-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .aicr-summary-table th,
+    .aicr-summary-table td {
+        padding: 10px;
+        font-size: 13px;
+    }
+}

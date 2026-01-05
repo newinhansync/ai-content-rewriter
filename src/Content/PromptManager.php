@@ -43,7 +43,8 @@ class PromptManager {
   "keywords": ["관련 키워드 5-8개"],
   "tags": ["태그 3-5개"],
   "category_suggestion": "추천 카테고리명",
-  "excerpt": "게시글 요약 (150자 이내)"
+  "excerpt": "게시글 요약 (150자 이내)",
+  "summary_table": "글 전체 내용을 정리한 HTML 표 (아래 형식 참고)"
 }
 ```
 
@@ -98,6 +99,54 @@ class PromptManager {
 <p>독자를 위한 실행 가능한 조언...</p>
 <p>마무리 및 행동 유도...</p>
 ```
+
+## 요약 표 (summary_table) 작성 가이드
+
+글 전체 내용을 한눈에 파악할 수 있는 HTML 표를 작성해주세요:
+
+```html
+<table class="aicr-summary-table" style="width:100%; border-collapse:collapse; margin:20px 0;">
+  <thead>
+    <tr style="background-color:#f8f9fa;">
+      <th style="border:1px solid #dee2e6; padding:12px; text-align:left; width:30%;">항목</th>
+      <th style="border:1px solid #dee2e6; padding:12px; text-align:left;">내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid #dee2e6; padding:10px;"><strong>핵심 주제</strong></td>
+      <td style="border:1px solid #dee2e6; padding:10px;">글의 핵심 주제 1-2문장</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #dee2e6; padding:10px;"><strong>주요 포인트</strong></td>
+      <td style="border:1px solid #dee2e6; padding:10px;">
+        • 첫 번째 핵심 포인트<br>
+        • 두 번째 핵심 포인트<br>
+        • 세 번째 핵심 포인트<br>
+        • (필요시 추가)
+      </td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #dee2e6; padding:10px;"><strong>대상 독자</strong></td>
+      <td style="border:1px solid #dee2e6; padding:10px;">이 글이 도움이 될 독자층</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #dee2e6; padding:10px;"><strong>핵심 결론</strong></td>
+      <td style="border:1px solid #dee2e6; padding:10px;">글의 핵심 결론/시사점</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #dee2e6; padding:10px;"><strong>추천 행동</strong></td>
+      <td style="border:1px solid #dee2e6; padding:10px;">독자가 취할 수 있는 다음 단계</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+요약 표 작성 시 주의사항:
+- 글의 모든 주요 섹션 내용을 반영
+- 핵심 포인트는 3-5개로 요약
+- 간결하지만 정보가 풍부하게 작성
+- 표만 보고도 글의 핵심을 파악할 수 있도록 구성
 
 ## 작성 언어
 {{target_language}}로 모든 콘텐츠를 작성해주세요.

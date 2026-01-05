@@ -3,7 +3,7 @@
  * Plugin Name: AI Content Rewriter
  * Plugin URI: https://github.com/hansync/ai-content-rewriter
  * Description: URL 또는 텍스트를 AI를 활용하여 블로그 포스트로 변환하는 WordPress 플러그인
- * Version: 1.0.8
+ * Version: 1.0.9
  * Requires at least: 6.0
  * Requires PHP: 8.0
  * Author: hansync
@@ -24,7 +24,7 @@ if (!defined('ABSPATH')) {
 }
 
 // 플러그인 상수 정의
-define('AICR_VERSION', '1.0.8');
+define('AICR_VERSION', '1.0.9');
 define('AICR_PLUGIN_FILE', __FILE__);
 define('AICR_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('AICR_PLUGIN_URL', plugin_dir_url(__FILE__));

@@ -208,9 +208,22 @@ class SharedRewriteProcessor {
             // Step 3: 게시글 생성
             $this->update_task_progress($task_id, self::STATUS_PUBLISHING, 'publishing', 80, '워드프레스 게시글 생성 중...');
 
+            // 본문 콘텐츠 구성
+            $post_content = $parsed_content['post_content'] ?? $ai_raw_content;
+
+            // 요약 표가 있으면 본문 끝에 추가
+            if (!empty($parsed_content['summary_table'])) {
+                $summary_table = $parsed_content['summary_table'];
+                $post_content .= "\n\n<!-- 글 요약 -->\n";
+                $post_content .= '<div class="aicr-summary-section">';
+                $post_content .= '<h2>📋 글 요약</h2>';
+                $post_content .= $summary_table;
+                $post_content .= '</div>';
+            }
+
             $post_data = [
                 'post_title' => $parsed_content['post_title'] ?? $content_data['title'],
-                'post_content' => $parsed_content['post_content'] ?? $ai_raw_content,
+                'post_content' => $post_content,
                 'post_excerpt' => $parsed_content['excerpt'] ?? '',
                 'post_status' => $options['post_status'] ?? 'draft',
                 'post_author' => get_current_user_id(),
