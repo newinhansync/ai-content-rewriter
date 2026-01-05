@@ -211,12 +211,12 @@ class SharedRewriteProcessor {
             // 본문 콘텐츠 구성
             $post_content = $parsed_content['post_content'] ?? $ai_raw_content;
 
-            // 요약 표가 있으면 본문 끝에 추가
+            // 발췌 표가 있으면 본문 끝에 추가
             if (!empty($parsed_content['summary_table'])) {
                 $summary_table = $parsed_content['summary_table'];
-                $post_content .= "\n\n<!-- 글 요약 -->\n";
+                $post_content .= "\n\n<!-- 핵심 내용 발췌 -->\n";
                 $post_content .= '<div class="aicr-summary-section">';
-                $post_content .= '<h2>📋 글 요약</h2>';
+                $post_content .= '<h2>📌 핵심 내용 정리</h2>';
                 $post_content .= $summary_table;
                 $post_content .= '</div>';
             }
