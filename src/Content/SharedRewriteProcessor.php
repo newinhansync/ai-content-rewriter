@@ -548,6 +548,8 @@ class SharedRewriteProcessor {
      */
     private function generate_extract_table($ai, PromptManager $prompt_manager, string $post_content, string $language): ?string {
         try {
+            error_log('[AICR] Starting extract table generation...');
+
             // 발췌 표 프롬프트 생성
             $extract_prompt = $prompt_manager->build_prompt(
                 'extract_table',
@@ -556,6 +558,8 @@ class SharedRewriteProcessor {
                     'target_language' => $language,
                 ]
             );
+
+            error_log('[AICR] Extract prompt length: ' . strlen($extract_prompt));
 
             // AI 호출 (발췌 표는 토큰을 적게 사용)
             $table_response = $ai->generate($extract_prompt, [
@@ -568,12 +572,24 @@ class SharedRewriteProcessor {
             }
 
             $table_content = $table_response->get_content();
+            error_log('[AICR] Extract table response length: ' . strlen($table_content));
 
             // HTML 표 추출
-            return $this->extract_html_table($table_content);
+            $extracted_table = $this->extract_html_table($table_content);
 
+            if (empty($extracted_table)) {
+                error_log('[AICR] Could not extract HTML table from response. Response preview: ' . substr($table_content, 0, 500));
+            } else {
+                error_log('[AICR] Extract table success! Table length: ' . strlen($extracted_table));
+            }
+
+            return $extracted_table;
+
+        } catch (AIException $e) {
+            error_log('[AICR] Extract table AI error: ' . $e->getMessage() . ' (code: ' . $e->get_error_code() . ')');
+            return null;
         } catch (\Exception $e) {
-            error_log('[AICR] Extract table error: ' . $e->getMessage());
+            error_log('[AICR] Extract table error: ' . $e->getMessage() . ' | File: ' . $e->getFile() . ':' . $e->getLine());
             return null;
         }
     }
