@@ -1,0 +1,160 @@
+# AI Content Rewriter - Cloudflare Worker Configuration
+# https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "ai-content-rewriter"
+main = "src/index.ts"
+compatibility_date = "2025-01-20"
+compatibility_flags = ["nodejs_compat"]
+
+# ============================================================================
+# Development Environment
+# ============================================================================
+
+[vars]
+ENVIRONMENT = "development"
+LOG_LEVEL = "debug"
+MAX_RETRIES = "3"
+RETRY_DELAY_MS = "1000"
+
+# ============================================================================
+# KV Namespaces (Configuration & Locks)
+# ============================================================================
+
+[[kv_namespaces]]
+binding = "CONFIG_KV"
+id = "your-kv-namespace-id"  # Replace after: wrangler kv namespace create CONFIG_KV
+preview_id = "your-preview-kv-id"
+
+[[kv_namespaces]]
+binding = "LOCK_KV"
+id = "your-lock-kv-namespace-id"  # Replace after: wrangler kv namespace create LOCK_KV
+preview_id = "your-preview-lock-kv-id"
+
+# ============================================================================
+# D1 Database (Logs & Task History)
+# ============================================================================
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aicr-worker-db"
+database_id = "your-d1-database-id"  # Replace after: wrangler d1 create aicr-worker-db
+
+# ============================================================================
+# R2 Bucket (Generated Images)
+# ============================================================================
+
+[[r2_buckets]]
+binding = "IMAGES_BUCKET"
+bucket_name = "aicr-images"
+# Create: wrangler r2 bucket create aicr-images
+
+# ============================================================================
+# Workflows (Durable Execution)
+# ============================================================================
+
+[[workflows]]
+name = "master-workflow"
+binding = "MASTER_WORKFLOW"
+class_name = "MasterWorkflow"
+
+[[workflows]]
+name = "item-workflow"
+binding = "ITEM_WORKFLOW"
+class_name = "ItemWorkflow"
+
+# ============================================================================
+# Cron Triggers
+# ============================================================================
+
+[triggers]
+crons = [
+  "0 * * * *",   # 매시 정각: Master Workflow 트리거
+  "30 * * * *"   # 매시 30분: 미완료 작업 재시도
+]
+
+# ============================================================================
+# Staging Environment
+# ============================================================================
+
+[env.staging]
+name = "ai-content-rewriter-staging"
+vars = { ENVIRONMENT = "staging", LOG_LEVEL = "info" }
+
+[[env.staging.kv_namespaces]]
+binding = "CONFIG_KV"
+id = "staging-kv-namespace-id"
+
+[[env.staging.kv_namespaces]]
+binding = "LOCK_KV"
+id = "staging-lock-kv-namespace-id"
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "aicr-worker-db-staging"
+database_id = "staging-d1-database-id"
+
+[[env.staging.r2_buckets]]
+binding = "IMAGES_BUCKET"
+bucket_name = "aicr-images-staging"
+
+[[env.staging.workflows]]
+name = "master-workflow-staging"
+binding = "MASTER_WORKFLOW"
+class_name = "MasterWorkflow"
+
+[[env.staging.workflows]]
+name = "item-workflow-staging"
+binding = "ITEM_WORKFLOW"
+class_name = "ItemWorkflow"
+
+# ============================================================================
+# Production Environment
+# ============================================================================
+
+[env.production]
+name = "ai-content-rewriter-production"
+vars = { ENVIRONMENT = "production", LOG_LEVEL = "warn" }
+
+[[env.production.kv_namespaces]]
+binding = "CONFIG_KV"
+id = "production-kv-namespace-id"
+
+[[env.production.kv_namespaces]]
+binding = "LOCK_KV"
+id = "production-lock-kv-namespace-id"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "aicr-worker-db-production"
+database_id = "production-d1-database-id"
+
+[[env.production.r2_buckets]]
+binding = "IMAGES_BUCKET"
+bucket_name = "aicr-images-production"
+
+[[env.production.workflows]]
+name = "master-workflow-production"
+binding = "MASTER_WORKFLOW"
+class_name = "MasterWorkflow"
+
+[[env.production.workflows]]
+name = "item-workflow-production"
+binding = "ITEM_WORKFLOW"
+class_name = "ItemWorkflow"
+
+[env.production.triggers]
+crons = [
+  "0 * * * *",
+  "30 * * * *"
+]
+
+# ============================================================================
+# Secrets (Set via: wrangler secret put <NAME>)
+# ============================================================================
+# Required secrets:
+# - WORKER_SECRET: Bearer token for WordPress → Worker authentication
+# - HMAC_SECRET: HMAC-SHA256 signing key for Worker → WordPress webhooks
+# - WP_API_KEY: WordPress REST API authentication key
+# - OPENAI_API_KEY: OpenAI API key
+# - GEMINI_API_KEY: Google Gemini API key
+# - WORDPRESS_URL: WordPress site URL (e.g., https://example.com)

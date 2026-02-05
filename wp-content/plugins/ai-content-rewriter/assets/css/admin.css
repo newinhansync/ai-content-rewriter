@@ -1,0 +1,1666 @@
+/**
+ * AI Content Rewriter - Admin Styles
+ *
+ * @package AIContentRewriter
+ */
+
+/* Container */
+.aicr-wrap {
+    max-width: 1200px;
+}
+
+.aicr-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Form Sections */
+.aicr-form-section {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.aicr-form-section h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Tabs */
+.aicr-source-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.aicr-tab {
+    padding: 8px 16px;
+    background: #f0f0f1;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.aicr-tab:hover {
+    background: #e0e0e0;
+}
+
+.aicr-tab.active {
+    background: #2271b1;
+    color: #fff;
+    border-color: #2271b1;
+}
+
+.aicr-tab-content {
+    display: none;
+}
+
+.aicr-tab-content.active {
+    display: block;
+}
+
+/* Form Elements */
+.aicr-full-width {
+    width: 100%;
+}
+
+textarea.aicr-full-width {
+    min-height: 200px;
+    font-family: monospace;
+}
+
+/* Form Actions */
+.aicr-form-actions {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    background: #f6f7f7;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+/* Result Preview */
+.aicr-result-preview {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.aicr-result-preview h2 {
+    margin-top: 0;
+}
+
+#aicr-result-content {
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.aicr-result-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Modal */
+.aicr-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aicr-modal-content {
+    background: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.aicr-modal-large {
+    max-width: 800px;
+}
+
+.aicr-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.aicr-modal-close:hover {
+    color: #000;
+}
+
+.aicr-modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+/* Settings Tabs */
+.aicr-settings-tabs {
+    margin-top: 20px;
+}
+
+.aicr-tab-panel {
+    display: none;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-top: none;
+    padding: 20px;
+}
+
+.aicr-tab-panel.active {
+    display: block;
+}
+
+/* Templates Grid */
+.aicr-templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.aicr-template-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.aicr-template-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f6f7f7;
+    border-bottom: 1px solid #eee;
+}
+
+.aicr-template-header h3 {
+    margin: 0;
+}
+
+.aicr-template-badge {
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.aicr-template-badge.default {
+    background: #e0e0e0;
+    color: #666;
+}
+
+.aicr-template-body {
+    padding: 15px;
+}
+
+.aicr-template-body p {
+    margin-top: 0;
+    color: #666;
+}
+
+.aicr-template-vars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.aicr-var {
+    padding: 2px 8px;
+    background: #e7f3ff;
+    color: #0073aa;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: monospace;
+}
+
+.aicr-template-footer {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+}
+
+/* Form Rows */
+.aicr-form-row {
+    margin-bottom: 15px;
+}
+
+.aicr-form-row label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.aicr-form-row input[type="text"],
+.aicr-form-row select,
+.aicr-form-row textarea {
+    width: 100%;
+}
+
+/* Loading State */
+.aicr-loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.aicr-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
+
+/* Filters */
+.aicr-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f6f7f7;
+    border-radius: 4px;
+}
+
+/* Pagination */
+.aicr-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+/* Status Badges */
+.aicr-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+.aicr-status-completed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.aicr-status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.aicr-status-failed {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* ================================
+   RSS Feed Management Styles
+   ================================ */
+
+/* Statistics Row */
+.aicr-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.aicr-stat-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+}
+
+.aicr-stat-number {
+    display: block;
+    font-size: 32px;
+    font-weight: 600;
+    color: #2271b1;
+    line-height: 1.2;
+}
+
+.aicr-stat-label {
+    display: block;
+    color: #666;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* Feed Cards */
+.aicr-feeds-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.aicr-feed-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 15px 20px;
+    transition: box-shadow 0.2s;
+}
+
+.aicr-feed-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aicr-feed-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.aicr-feed-status {
+    flex-shrink: 0;
+}
+
+.aicr-status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #999;
+}
+
+.aicr-status-dot.active {
+    background: #46b450;
+}
+
+.aicr-status-dot.paused {
+    background: #f0b849;
+}
+
+.aicr-status-dot.error {
+    background: #dc3232;
+}
+
+.aicr-feed-name {
+    flex: 1;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.aicr-feed-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.aicr-feed-actions .button {
+    padding: 0 8px;
+    min-height: 30px;
+}
+
+.aicr-feed-actions .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 30px;
+}
+
+.aicr-feed-url {
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.aicr-feed-url a {
+    color: #0073aa;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.aicr-feed-url a:hover {
+    text-decoration: underline;
+}
+
+.aicr-feed-error {
+    background: #fef7f1;
+    border: 1px solid #f8d7da;
+    color: #721c24;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.aicr-feed-error .dashicons {
+    color: #dc3232;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.aicr-feed-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 12px;
+    color: #666;
+}
+
+.aicr-feed-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.aicr-feed-meta .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    color: #999;
+}
+
+/* Badge */
+.aicr-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #e0f0ff;
+    color: #0073aa;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* Empty State */
+.aicr-empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+}
+
+.aicr-empty-state .dashicons {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: #ccd0d4;
+    margin-bottom: 15px;
+}
+
+.aicr-empty-state h3 {
+    margin: 0 0 10px;
+    color: #666;
+}
+
+.aicr-empty-state p {
+    color: #999;
+    margin-bottom: 20px;
+}
+
+/* ================================
+   Feed Reader Styles
+   ================================ */
+
+/* Reader Layout */
+.aicr-reader-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Sidebar */
+.aicr-reader-sidebar {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 15px;
+    height: fit-content;
+    position: sticky;
+    top: 32px;
+}
+
+.aicr-filter-section {
+    margin-bottom: 20px;
+}
+
+.aicr-filter-section:last-child {
+    margin-bottom: 0;
+}
+
+.aicr-filter-section h4 {
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+    color: #23282d;
+}
+
+.aicr-feed-filter-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.aicr-feed-filter-list li {
+    margin-bottom: 8px;
+}
+
+.aicr-feed-filter-list label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.aicr-feed-filter-list .count {
+    margin-left: auto;
+    color: #999;
+    font-size: 12px;
+}
+
+.aicr-status-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.aicr-status-filters label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* Main Content Area */
+.aicr-reader-main {
+    min-width: 0;
+}
+
+/* Reader Header */
+.aicr-reader-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+}
+
+.aicr-reader-search {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    max-width: 400px;
+}
+
+.aicr-reader-search input {
+    flex: 1;
+}
+
+.aicr-bulk-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.aicr-bulk-actions select {
+    min-width: 150px;
+}
+
+/* Items List */
+.aicr-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Item Card */
+.aicr-item-card {
+    display: flex;
+    gap: 15px;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 15px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.aicr-item-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.aicr-item-card.unread {
+    border-left: 3px solid #2271b1;
+}
+
+.aicr-item-card.selected {
+    background: #f0f6fc;
+    border-color: #2271b1;
+}
+
+.aicr-item-checkbox {
+    flex-shrink: 0;
+    padding-top: 3px;
+}
+
+.aicr-item-thumbnail {
+    flex-shrink: 0;
+    width: 120px;
+    height: 80px;
+    background: #f0f0f1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.aicr-item-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.aicr-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.aicr-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.aicr-item-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.aicr-item-title a {
+    color: #23282d;
+    text-decoration: none;
+}
+
+.aicr-item-title a:hover {
+    color: #2271b1;
+}
+
+.aicr-item-status {
+    flex-shrink: 0;
+}
+
+.aicr-item-excerpt {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.aicr-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 12px;
+    color: #666;
+}
+
+.aicr-item-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.aicr-item-meta .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    color: #999;
+}
+
+.aicr-item-actions {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Status Badges Extended */
+.aicr-status-unread {
+    background: #e0f0ff;
+    color: #0073aa;
+}
+
+.aicr-status-read {
+    background: #f0f0f1;
+    color: #666;
+}
+
+.aicr-status-queued {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.aicr-status-processing {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.aicr-status-skipped {
+    background: #e2e3e5;
+    color: #383d41;
+}
+
+/* ================================
+   Modal Enhancements
+   ================================ */
+
+.aicr-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.aicr-modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.aicr-modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.aicr-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 15px;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* ================================
+   Form Enhancements
+   ================================ */
+
+.aicr-form-group {
+    margin-bottom: 15px;
+}
+
+.aicr-form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.aicr-form-group label .required {
+    color: #dc3232;
+}
+
+.aicr-form-group .description {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+}
+
+.aicr-form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.aicr-input-group {
+    display: flex;
+    gap: 8px;
+}
+
+.aicr-input-group input {
+    flex: 1;
+}
+
+.aicr-checkbox-label {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal !important;
+    cursor: pointer;
+}
+
+.aicr-checkbox-label input[type="checkbox"] {
+    margin: 0;
+}
+
+/* Validation Result */
+#aicr-feed-validation-result {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+#aicr-feed-validation-result.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+#aicr-feed-validation-result.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* ================================
+   Preview Modal Styles
+   ================================ */
+
+.aicr-preview-header {
+    margin-bottom: 20px;
+}
+
+.aicr-preview-header h3 {
+    margin: 0 0 10px;
+}
+
+.aicr-preview-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 13px;
+    color: #666;
+}
+
+.aicr-preview-content {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    line-height: 1.6;
+}
+
+.aicr-preview-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ================================
+   Rewrite Modal Styles
+   ================================ */
+
+.aicr-rewrite-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.aicr-rewrite-item-info {
+    background: #f0f6fc;
+    border: 1px solid #c3dcf7;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.aicr-rewrite-item-info h4 {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+.aicr-rewrite-item-info p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .aicr-form-actions,
+    .aicr-result-actions,
+    .aicr-filters {
+        flex-direction: column;
+    }
+
+    .aicr-templates-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .aicr-reader-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .aicr-reader-sidebar {
+        position: static;
+    }
+
+    .aicr-stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .aicr-item-card {
+        flex-direction: column;
+    }
+
+    .aicr-item-thumbnail {
+        width: 100%;
+        height: 150px;
+    }
+
+    .aicr-item-actions {
+        flex-direction: row;
+    }
+
+    .aicr-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .aicr-reader-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .aicr-reader-search {
+        max-width: none;
+    }
+
+    .aicr-bulk-actions {
+        flex-wrap: wrap;
+    }
+}
+
+/* =================================
+   Async Rewrite Progress UI
+   ================================= */
+
+.aicr-rewrite-progress {
+    padding: 30px;
+    text-align: center;
+}
+
+.aicr-progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.aicr-progress-header .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.aicr-progress-bar-container {
+    width: 100%;
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.aicr-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #2271b1, #135e96);
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+.aicr-progress-steps {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.aicr-progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.4;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.aicr-progress-step.active {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.aicr-progress-step.completed {
+    opacity: 0.8;
+}
+
+.aicr-progress-step.completed .step-icon::after {
+    content: '✓';
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    font-size: 10px;
+    background: #46b450;
+    color: white;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aicr-progress-step .step-icon {
+    font-size: 28px;
+    position: relative;
+}
+
+.aicr-progress-step .step-label {
+    font-size: 12px;
+    color: #666;
+}
+
+.aicr-progress-step.active .step-label {
+    color: #2271b1;
+    font-weight: 600;
+}
+
+.aicr-progress-message {
+    color: #666;
+    font-size: 14px;
+    margin-top: 15px;
+    min-height: 20px;
+}
+
+.aicr-progress-actions {
+    margin-top: 20px;
+}
+
+/* Rewrite form content wrapper */
+.aicr-rewrite-form-content {
+    /* Default visible */
+}
+
+/* Spinning animation */
+@keyframes aicr-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.dashicons.spin {
+    animation: aicr-spin 1s linear infinite;
+}
+
+/* Modal adjustments for progress */
+#aicr-rewrite-modal .aicr-modal-content {
+    min-height: 300px;
+}
+
+/* ================================
+   새 콘텐츠 페이지 진행 상황 UI
+   ================================ */
+
+.aicr-content-progress {
+    margin-top: 20px;
+}
+
+.aicr-progress-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.aicr-content-progress .aicr-progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.aicr-content-progress .aicr-progress-header .dashicons {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+    color: #2271b1;
+}
+
+/* ================================
+   결과 카드 스타일
+   ================================ */
+
+.aicr-result-preview,
+.aicr-error-preview {
+    margin-top: 20px;
+}
+
+.aicr-result-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.aicr-result-card.success {
+    border: 2px solid #46b450;
+}
+
+.aicr-result-card.error {
+    border: 2px solid #dc3232;
+}
+
+.aicr-result-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.aicr-result-card h2 {
+    margin: 0 0 10px;
+    font-size: 24px;
+}
+
+.aicr-result-card.success h2 {
+    color: #46b450;
+}
+
+.aicr-result-card.error h2 {
+    color: #dc3232;
+}
+
+.aicr-result-post-title {
+    font-size: 18px;
+    color: #1d2327;
+    margin: 0 0 15px;
+    font-weight: 500;
+}
+
+.aicr-result-category {
+    margin-bottom: 25px;
+}
+
+.aicr-result-category .category-badge {
+    display: inline-block;
+    background: #2271b1;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.aicr-error-message {
+    color: #dc3232;
+    font-size: 14px;
+    margin: 0 0 20px;
+}
+
+.aicr-result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.aicr-result-actions .button {
+    min-width: 120px;
+}
+
+/* ================================
+   요약 표 스타일 (Summary Table)
+   ================================ */
+
+.aicr-summary-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #eee;
+}
+
+.aicr-summary-section h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #1d2327;
+}
+
+.aicr-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.aicr-summary-table thead tr {
+    background-color: #f8f9fa;
+}
+
+.aicr-summary-table th {
+    border: 1px solid #dee2e6;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.aicr-summary-table td {
+    border: 1px solid #dee2e6;
+    padding: 12px 15px;
+    vertical-align: top;
+    line-height: 1.6;
+}
+
+.aicr-summary-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.aicr-summary-table tbody tr:hover {
+    background-color: #f0f6fc;
+}
+
+.aicr-summary-table td strong {
+    color: #2271b1;
+}
+
+/* 반응형 요약 표 */
+@media screen and (max-width: 600px) {
+    .aicr-summary-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .aicr-summary-table th,
+    .aicr-summary-table td {
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+/* ================================
+   자동화 탭 스타일 (Automation Tab)
+   ================================ */
+
+/* 전체 상태 표시 */
+.aicr-automation-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.aicr-automation-status .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.aicr-automation-status .aicr-status-text {
+    flex: 1;
+    font-size: 16px;
+}
+
+.aicr-automation-status.aicr-status-healthy {
+    border-left: 4px solid #00a32a;
+    background: linear-gradient(to right, #f0fdf4, #fff);
+}
+
+.aicr-automation-status.aicr-status-warning {
+    border-left: 4px solid #dba617;
+    background: linear-gradient(to right, #fefce8, #fff);
+}
+
+.aicr-automation-status.aicr-status-critical {
+    border-left: 4px solid #d63638;
+    background: linear-gradient(to right, #fef2f2, #fff);
+}
+
+/* 스케줄 카드 그리드 */
+.aicr-schedule-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.aicr-schedule-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.aicr-schedule-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.aicr-schedule-card h4 {
+    margin: 0 0 15px;
+    font-size: 16px;
+    color: #1d2327;
+}
+
+.aicr-schedule-info {
+    margin-bottom: 15px;
+}
+
+.aicr-schedule-info p {
+    margin: 8px 0;
+    font-size: 13px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.aicr-schedule-info .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.aicr-run-now {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.aicr-run-now .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+/* 권고사항 */
+.aicr-recommendations {
+    background: #fff8e5;
+    border: 1px solid #f0c36d;
+    border-radius: 4px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+}
+
+.aicr-recommendations h3 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    color: #856404;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.aicr-recommendations ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.aicr-recommendations li {
+    padding: 8px 0;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.aicr-recommendations li .dashicons {
+    flex-shrink: 0;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.aicr-recommendation-error {
+    color: #d63638;
+}
+
+.aicr-recommendation-warning {
+    color: #856404;
+}
+
+.aicr-recommendation-info {
+    color: #0073aa;
+}
+
+/* 가이드 탭 */
+.aicr-guide-tabs {
+    margin: 20px 0;
+}
+
+.aicr-guide-tab-nav {
+    display: flex;
+    gap: 5px;
+    border-bottom: 1px solid #ccd0d4;
+    margin-bottom: 0;
+}
+
+.aicr-guide-tab {
+    padding: 10px 20px;
+    background: #f0f0f1;
+    border: 1px solid #ccd0d4;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.aicr-guide-tab:hover {
+    background: #e0e0e0;
+}
+
+.aicr-guide-tab.active {
+    background: #fff;
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+    font-weight: 600;
+}
+
+.aicr-guide-content {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-top: none;
+    padding: 20px;
+}
+
+.aicr-guide-panel {
+    display: none;
+}
+
+.aicr-guide-panel.active {
+    display: block;
+}
+
+.aicr-guide-panel h4 {
+    margin-top: 0;
+    color: #1d2327;
+}
+
+.aicr-guide-panel ol {
+    padding-left: 20px;
+    line-height: 1.8;
+}
+
+.aicr-guide-panel ol li {
+    margin-bottom: 8px;
+}
+
+/* 코드 블록 */
+.aicr-code-block {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: #23282d;
+    border-radius: 4px;
+    padding: 12px 15px;
+    margin: 10px 0;
+}
+
+.aicr-code-block code {
+    flex: 1;
+    color: #50fa7b;
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 13px;
+    word-break: break-all;
+    background: transparent;
+}
+
+.aicr-copy-code {
+    flex-shrink: 0;
+    background: #3c434a;
+    border-color: #3c434a;
+    color: #fff;
+}
+
+.aicr-copy-code:hover {
+    background: #50575e;
+    border-color: #50575e;
+    color: #fff;
+}
+
+/* Cron URL 섹션 */
+.aicr-cron-url-section {
+    margin: 25px 0;
+}
+
+.aicr-cron-url-section h4 {
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.aicr-cron-url-box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.aicr-cron-url-box input {
+    flex: 1;
+    min-width: 300px;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+/* 로그 섹션 */
+.aicr-cron-logs-section {
+    margin-top: 20px;
+}
+
+.aicr-cron-logs-section .wp-list-table {
+    margin-bottom: 15px;
+}
+
+.aicr-cron-logs-section .wp-list-table td {
+    vertical-align: middle;
+}
+
+.aicr-log-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.aicr-log-completed td {
+    background-color: rgba(0, 163, 42, 0.05);
+}
+
+.aicr-log-failed td {
+    background-color: rgba(214, 54, 56, 0.05);
+}
+
+.aicr-log-running td {
+    background-color: rgba(34, 113, 177, 0.05);
+}
+
+/* 자동화 탭 반응형 */
+@media screen and (max-width: 782px) {
+    .aicr-automation-status {
+        flex-wrap: wrap;
+    }
+
+    .aicr-schedule-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .aicr-guide-tab-nav {
+        flex-wrap: wrap;
+    }
+
+    .aicr-guide-tab {
+        flex: 1;
+        text-align: center;
+        min-width: 100px;
+    }
+
+    .aicr-cron-url-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .aicr-cron-url-box input {
+        min-width: auto;
+    }
+
+    .aicr-cron-url-box .button {
+        width: 100%;
+        justify-content: center;
+    }
+}

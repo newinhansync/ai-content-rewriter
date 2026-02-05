@@ -1,0 +1,63 @@
+# ============================================
+# AI Content Rewriter Project .gitignore
+# ============================================
+
+# WordPress Core (테스트 환경, 커밋하지 않음)
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/index.php
+/license.txt
+/readme.html
+/xmlrpc.php
+
+# WordPress Config (보안)
+wp-config.php
+
+# WordPress Content (플러그인 제외)
+/wp-content/themes/
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/plugins/*
+!/wp-content/plugins/ai-content-rewriter/
+
+# 플러그인 내 불필요 파일
+/wp-content/plugins/ai-content-rewriter/node_modules/
+/wp-content/plugins/ai-content-rewriter/vendor/
+
+# Cloudflare Worker
+/cloudflare-worker/node_modules/
+/cloudflare-worker/dist/
+/cloudflare-worker/.wrangler/
+/cloudflare-worker/.dev.vars
+/cloudflare-worker/coverage/
+/cloudflare-worker/.mf/
+
+# 배포 패키지 (선택적으로 커밋)
+# /dist/
+
+# 로그
+*.log
+debug.log
+wp-content/debug.log
+
+# OS 파일
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Playwright MCP (테스트 도구)
+.playwright-mcp/
+
+# 임시 파일
+*.tmp
+*.temp
+*.bak
